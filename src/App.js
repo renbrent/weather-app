@@ -7,7 +7,7 @@ import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import Thunderstorm from '@mui/icons-material/Thunderstorm';
+import WbSunny from '@mui/icons-material/WbSunny';
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -132,7 +132,7 @@ export default function App() {
             }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <Thunderstorm/>
+            <WbSunny/>
           </Avatar>
           <Typography variant="h5" color="initial" style={{textAlign: 'center'}}>
             Weather App
@@ -147,6 +147,8 @@ export default function App() {
                 alt= "weather current icon"
                 style={{height: '100px'}}
               />
+              <br/>
+              {apiCurrentData.weather[0]?.main}
               <br/>
               {kelvinToCelsius(apiCurrentData.main?.temp)}&deg;C
               <br/>
