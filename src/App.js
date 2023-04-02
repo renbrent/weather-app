@@ -6,7 +6,7 @@ import CardContent  from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid'
+import TextField from '@mui/material/TextField';
 import Thunderstorm from '@mui/icons-material/Thunderstorm';
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -26,8 +26,22 @@ export default function App() {
   const apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
   const apiUrlForecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}`;
 
+  const inputHandler = (event) => {
+    setgetCity(event.target.value);
+  };
+
+  const submitHandler = () => {
+    setCity(getCity);
+  };
+
   const kelvinToCelsius = (k) => {
-    return (k - 273.15).toFixed(0);
+    return (k - 273.15).toFixed(2);
+  };
+
+  const handleEnterKey = (event) => {
+    if (event.keyCode === 13) {
+      submitHandler();
+    }
   };
 
   useEffect(() => {
@@ -68,6 +82,40 @@ export default function App() {
     )
   }) : null;
 
+  let searchBar = (
+  <Card
+    sx={{
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      padding: '16px',
+      background: 'none',
+      boxShadow: 'none',
+    }}
+  >
+      <TextField
+        id="search-bar"
+        label="Search City"
+        variant="outlined"
+        size="small"
+        style={{ marginRight: '8px' }}
+        onChange={inputHandler}
+        value={getCity}
+        onKeyDown={handleEnterKey}
+      />
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={submitHandler}
+        disableElevation
+      >
+        Search
+      </Button>
+    </Card>
+  )
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="md">
@@ -86,6 +134,9 @@ export default function App() {
           </Avatar>
           <Typography variant="h5" color="initial">
             Weather App
+            <br/>
+          {searchBar}
+            {apiCurrentData.name + ", " + apiCurrentData.sys?.country}
           </Typography>
           <Typography variant="h5" color="initial">
             Today's Weather
