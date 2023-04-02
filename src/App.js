@@ -68,14 +68,16 @@ export default function App() {
           </Typography>
           <img
               src={`http://openweathermap.org/img/w/${apiForecastData.list[item]?.weather[0]?.icon}.png`}
-              alt="weather status icon"
-              className="weather-icon"
+              alt={'weather '+item+' icon'}
             />
           <Typography variant="h6">
-            {kelvinToCelsius(apiForecastData.list[item]?.main?.temp)}&deg;C
-          </Typography>
-          <Typography variant="body2">
             {apiForecastData.list[item]?.weather[0]?.main}
+          </Typography>
+          <Typography variant="body1">
+            High: {kelvinToCelsius(apiForecastData.list[item]?.main?.temp_max)}&deg;C
+          </Typography>
+          <Typography variant="body1">
+            Low: {kelvinToCelsius(apiForecastData.list[item]?.main?.temp_min)}&deg;C
           </Typography>
         </CardContent>
       </Card>
