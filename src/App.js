@@ -3,9 +3,9 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent  from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Thunderstorm from '@mui/icons-material/Thunderstorm';
 import Typography from '@mui/material/Typography'
@@ -134,16 +134,30 @@ export default function App() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <Thunderstorm/>
           </Avatar>
-          <Typography variant="h5" color="initial">
+          <Typography variant="h5" color="initial" style={{textAlign: 'center'}}>
             Weather App
             <br/>
           {searchBar}
             {apiCurrentData.name + ", " + apiCurrentData.sys?.country}
           </Typography>
-          <Typography variant="h5" color="initial">
-            Today's Weather
-          </Typography>
-          <Typography variant="h5" color="initial">
+          {apiCurrentData.main ? (
+            <Typography variant="h5" color="initial" style={{textAlign: 'center'}}>
+              <img
+                src={`http://openweathermap.org/img/w/${apiCurrentData.weather[0]?.icon}.png`}
+                alt= "weather current icon"
+                style={{height: '100px'}}
+              />
+              <br/>
+              {kelvinToCelsius(apiCurrentData.main?.temp)}&deg;C
+              <br/>
+              High: {kelvinToCelsius(apiCurrentData.main?.temp_max)}&deg;C
+              <br/>
+              Low: {kelvinToCelsius(apiCurrentData.main?.temp_min)}&deg;C
+            </Typography>
+          ) : (
+            null
+          )}
+          <Typography variant="h5" color="initial" style={{marginTop:10}}>
             Five Day Forecast
           </Typography>
           <Grid
