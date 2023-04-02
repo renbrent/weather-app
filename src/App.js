@@ -15,8 +15,30 @@ const theme = createTheme();
 
 
 export default function App() {
-  let items=['Item 1','Item 2','Item 3','Item 4','Item 5'];
-  let itemsList = items.map((item)=>{
+
+  const [apiCurrentData, setApiCurrentData] = useState({});
+  const [apiForecastData, setApiForecastData] = useState({});
+  const [getCity, setgetCity] = useState('okinawa');
+  const [city, setCity] = useState('okinawa');
+
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+  const apiUrlForecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}`;
+
+  const kelvinToCelsius = (k) => {
+    return (k - 273.15).toFixed(0);
+  };
+
+  useEffect(() => {
+    fetch(apiUrlCurrent)
+    .then((response) => response.json())
+    .then((data) => setApiCurrentData(data));
+
+    fetch(apiUrlForecast)
+    .then((response) => response.json())
+    .then((data) => setApiForecastData(data));
+
+  }, [apiUrlCurrent, apiUrlForecast])
     return (
       <Card>
         <CardHeader
