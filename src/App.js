@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -39,18 +40,34 @@ export default function App() {
     .then((data) => setApiForecastData(data));
 
   }, [apiUrlCurrent, apiUrlForecast])
+
+
+  let items=[0,8,16,24,32];
+  let itemsList = apiForecastData.list ? items.map((item)=>{
     return (
-      <Card>
-        <CardHeader
-          style={{textAlign:'center'}}
-          title={item}
-        />
+      <Card
+        style={{textAlign:'center'}}
+      >
         <CardContent>
-          This is {item}.
+          <Typography variant="h5">
+            {apiForecastData.list[item]?.dt_txt?.slice(5,7)+'/'+apiForecastData.list[item]?.dt_txt?.slice(8,10)}
+          </Typography>
+          <img
+              src={`http://openweathermap.org/img/w/${apiForecastData.list[item]?.weather[0]?.icon}.png`}
+              alt="weather status icon"
+              className="weather-icon"
+            />
+          <Typography variant="h6">
+            {kelvinToCelsius(apiForecastData.list[item]?.main?.temp)}&deg;C
+          </Typography>
+          <Typography variant="body2">
+            {apiForecastData.list[item]?.weather[0]?.main}
+          </Typography>
         </CardContent>
       </Card>
     )
-  })
+  }) : null;
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="md">
@@ -73,8 +90,11 @@ export default function App() {
           <Typography variant="h5" color="initial">
             Today's Weather
           </Typography>
+          <Typography variant="h5" color="initial">
+            Five Day Forecast
+          </Typography>
           <Grid
-            sx={{m:4}}
+            sx={{m:4, gap: 2, mt: 0}}
             container
             spacing={2}
             columns={5}
