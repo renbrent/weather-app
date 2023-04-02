@@ -24,7 +24,7 @@ export default function App() {
 
   const apiKey = process.env.REACT_APP_API_KEY;
   const apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-  const apiUrlForecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}`;
+  const apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}`;
 
   const inputHandler = (event) => {
     setgetCity(event.target.value);
