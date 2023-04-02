@@ -67,7 +67,7 @@ export default function App() {
             {apiForecastData.list[item]?.dt_txt?.slice(5,7)+'/'+apiForecastData.list[item]?.dt_txt?.slice(8,10)}
           </Typography>
           <img
-              src={`http://openweathermap.org/img/w/${apiForecastData.list[item]?.weather[0]?.icon}.png`}
+              src={`https://openweathermap.org/img/w/${apiForecastData.list[item]?.weather[0]?.icon}.png`}
               alt={'weather '+item+' icon'}
             />
           <Typography variant="h6">
@@ -143,7 +143,7 @@ export default function App() {
           {apiCurrentData.main ? (
             <Typography variant="h5" color="initial" style={{textAlign: 'center'}}>
               <img
-                src={`http://openweathermap.org/img/w/${apiCurrentData.weather[0]?.icon}.png`}
+                src={`https://openweathermap.org/img/w/${apiCurrentData.weather[0]?.icon}.png`}
                 alt= "weather current icon"
                 style={{height: '100px'}}
               />
