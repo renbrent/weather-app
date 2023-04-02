@@ -13,7 +13,7 @@ jobs:
   delete:
     runs-on: ubuntu-latest
     steps:
-      - uses: renbrent/delete-deployment-environment@v2
+      - uses: renbrent/weather-app@v2
         with:
           # ⚠️ The provided token needs permission for admin write:org
           token: ${{ secrets.DELETE_ENV }}
