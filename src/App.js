@@ -170,6 +170,9 @@ export default function App() {
           >
             {itemsList}
           </Grid>
+          <Typography variant="body2" color="textSecondary" align="center">
+            Copyright &copy; {(new Date().getFullYear())} Brent Basiano.
+          </Typography>
         </Card>
       </Container>
     </ThemeProvider>
