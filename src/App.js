@@ -82,7 +82,7 @@ export default function App() {
         </CardContent>
       </Card>
     )
-  }) : null;
+  }) : "Loading...";
 
   let searchBar = (
   <Card
@@ -138,7 +138,7 @@ export default function App() {
             Weather App
             <br/>
           {searchBar}
-            {apiCurrentData.name + ", " + apiCurrentData.sys?.country}
+            {apiCurrentData.name ? (apiCurrentData.name + ", " + apiCurrentData.sys?.country) : "Loading..."}
           </Typography>
           {apiCurrentData.main ? (
             <Typography variant="h5" color="initial" style={{textAlign: 'center'}}>
