@@ -148,7 +148,7 @@ export default function App() {
                 style={{height: '100px'}}
               />
               <br/>
-              {apiCurrentData.weather[0]?.main}
+              Current: {apiCurrentData.weather[0]?.main}
               <br/>
               {kelvinToCelsius(apiCurrentData.main?.temp)}&deg;C
               <br/>
