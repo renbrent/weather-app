@@ -173,7 +173,7 @@ export default function App() {
             {itemsList}
           </Grid>
           <Typography variant="body2" color="textSecondary" align="center">
-            Copyright &copy; {(new Date().getFullYear())} Brent Basiano.
+            Check out my <a href="https://github.com/renbrent">GitHub</a>!
           </Typography>
         </Card>
       </Container>
